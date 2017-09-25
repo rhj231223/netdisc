@@ -1,0 +1,15 @@
+h3{
+   padding:20px;
+}
+
+.main_style{
+    background:#fff;
+    min-height: 800px;
+    text-align: center;
+}
+
+.form_middle{
+    width:600px;
+    margin: 0 auto;
+    padding:60px 40px 40px 40px;
+}

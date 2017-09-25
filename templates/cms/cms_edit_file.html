@@ -1,0 +1,66 @@
+{% extends 'cms_base.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ static_url('cms/css/cms_edit_file.css') }}">
+    <script src="{{ static_url('cms/js/cms_edit_file.js') }}"></script>
+{% end %}
+
+{% block page_heading %}
+    <h3>文件编辑</h3>
+{% end %}
+
+{% block wrapper %}
+    <div class="main_style">
+        <form action="" class="form form_middle" method="post">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">文件id</span>
+                    <input class="form-control" type="text" name="id" value="{{ file.id }}" readonly="readonly">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">文件名</span>
+                    <input class="form-control" type="text" name="name" value="{{ file.name }}">
+                </div>
+            </div>
+             <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">需要权限</span>
+                    <select name="permission_id" class="form-control">
+                        {% if not file.permission %}
+                                <option value="">无</option>
+                        {% end %}
+                        {% for permission in permissions %}
+                            {% if permission==file.permission %}
+                                <option value="{{ permission.id }}" selected>{{ permission.desc }}</option>
+                            {% else %}
+                                <option value="{{ permission.id }}">{{ permission.desc }}</option>
+                            {% end %}
+                        {% end %}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-info" id="submit_btn" data_id="{{ file.uuid }}">保存</button>
+            </div>
+        </form>
+        <div class="preview">
+            <h5>文件预览</h5>
+            {% if 'image' in file.content_type %}
+                <img src="/preview/{{ file.name }}" width="300" height="200">
+            {% elif 'audio' in file.content_type %}
+                <audio controls="controls" width="300" height="200">
+                    <source src="/preview/{{ file.name }}" />
+                </audio>
+            {% elif 'video' in file.content_type %}
+                <video controls="controls" width="640" height="480">
+                    <source src="/preview/{{ file.name }}" />
+                </video>
+            {% else %}
+                <p>该类型的文件不支持预览</p>
+            {% end %}
+        </div>
+
+    </div>
+{% end %}

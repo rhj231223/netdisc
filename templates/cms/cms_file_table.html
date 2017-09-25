@@ -1,0 +1,92 @@
+{% extends 'cms_base.html' %}
+
+{% block title %}
+    文件管理
+{% end %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ static_url('cms/css/cms_file_table.css') }}">
+    <script src="{{ static_url('cms/js/cms_delete_file.js') }}"></script>
+{% end %}
+
+{% block page_heading %}
+    <h3>文件管理</h3>
+{% end %}
+
+{% block wrapper %}
+    <div class="main">
+        <a href="/cms/upload_file/">文件上传</a>
+        <table class="table table-striped table_style">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>文件名</td>
+                    <td>上传时间</td>
+                    <td>文件类型</td>
+                    <td>文件大小</td>
+                    <td>需要权限</td>
+                    <td>是否删除</td>
+                    <td>编辑</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for file in files %}
+                    <tr>
+                        <td>{{ file.id }}</td>
+                        <td>{{ file.name }}</td>
+                        <td>{{ file.create_time }}</td>
+                        <td>{{ file.content_type }}</td>
+                        <td>{{ file.size }}</td>
+                        {% if file.permission %}
+                            <td>{{ file.permission.desc }}</td>
+                        {% else %}
+                            <td>无</td>
+                        {% end %}
+                        <td>{{ file.is_removed }}</td>
+                        <td>
+                            <a href="/cms/edit_file/{{ file.uuid }}/" class="btn btn-warning btn-xs">编辑</a>
+                            
+                            {% if not file.permission or cms_has_permission(file.name,type_name='file') %}
+                                {% if not file.is_removed %}
+                                    <button type="button" class="btn btn-danger btn-xs delete_btn" data_id="{{ file.uuid }}" data_want_remove="1">删除</button>
+                                {% else %}
+                                    <button type="button" class="btn btn-success btn-xs delete_btn" data_id="{{ file.uuid }}" data_want_remove="0">取消删除</button>
+                                {% end %}
+                            {% end %}
+
+
+                            <a href="/cms/download_file/{{ file.uuid }}/" class="btn btn-info btn-xs">下载</a>
+                        </td>
+
+                    </tr>
+                {% end %}
+
+            </tbody>
+        </table>
+        <div class="pag">
+            <ul class="pagination">
+                <li><a href="/cms/file_table/{{ pre_page }}/">&laquo;</a></li>
+                {% if current_page > show_page %}
+                    <li><a href="/cms/file_table/1/">首页</a></li>
+                {% end %}
+
+                {% for page in page_list  %}
+                    {% if page==current_page %}
+                        <li class="active"><a href="/cms/file_table/{{ page }}/">{{ page }}</a></li>
+                    {% else %}
+                        <li><a href="/cms/file_table/{{ page }}/">{{ page }}</a></li>
+                    {% end %}
+
+                {% end %}
+
+
+                <li><span>共 {{ total_page }} 页</span></li>
+                {% if current_page <= (total_page-total_page%show_page) %}
+                    <li><a href="/cms/file_table/{{ total_page }}/">尾页</a></li>
+                {% end %}
+                <li><a href="/cms/file_table/{{ next_page }}/">&raquo;</a></li>
+            </ul>
+        </div>
+
+    </div>
+{% end %}

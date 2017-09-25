@@ -1,0 +1,19 @@
+body{
+    background-color: #eee;
+}
+
+.form_min{
+    width:400px;
+    padding:20px 40px 30px 40px;
+    margin: 100px auto;
+    text-align: center;
+    background-color: #fff;
+}
+
+.glyphicon{
+    top:0;
+}
+
+h2{
+    margin-bottom: 30px;
+}

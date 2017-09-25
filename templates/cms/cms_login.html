@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+    <meta charset="utf-8"/>
+    <meta name="keywords" content="html,css,javascript" />
+    <meta name="description" content="html,css,javascript" />
+
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
+
+
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="{{ static_url('account/css/cms_login.css') }}">
+
+
+
+
+    <style type="text/css">
+        *{
+            margin:0; padding:0;
+            font-family:"Microsoft YaHei";
+        }
+        a{text-decoration:none;}
+        li{list-style:none;}
+        
+
+
+        
+    </style>
+</head>
+<body>
+    <form action="" method="post" class="form form-horizontal form_min">
+        <div class="page_title">
+            <h1>登录</h1>
+        </div>
+        {% module xsrf_form_html() %}
+        {% if message %}
+            <p class="alert alert-danger">{{ message }}</p>
+        {% end %}
+
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon glyphicon glyphicon-user"></span>
+                <input type="text" name="username" class="form-control" placeholder="用户名">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon glyphicon glyphicon-lock"></span>
+                <input type="password" name="password" class="form-control" placeholder="密码">
+            </div>
+        </div>
+        {% include '../common/common_graph_captcha.html' %}
+        <div class="form-group">
+            <button class="btn btn-primary btn-block">登录</button>
+        </div>
+        <div class="checkbox checkbox_style">
+            <label for="">
+                <input type="checkbox" name="remember" value="1">记住我
+            </label>
+        </div>
+        <span class="forget_password">
+            <a href="">忘记密码?</a>
+        </span>
+
+
+    </form>
+
+	
+	
+
+
+
+	
+</body>
+</html>

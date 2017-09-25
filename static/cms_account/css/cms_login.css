@@ -1,0 +1,28 @@
+.form_min{
+    max-width:300px;
+    margin:200px auto;
+}
+
+.page_title{
+    text-align: center;
+    margin-bottom:30px;
+}
+
+.form-horizontal .checkbox{
+    padding-top: 0;
+}
+
+.checkbox_style{
+    float:left;
+}
+
+.forget_password{
+    float:right;
+}
+
+.glyphicon{
+    top:0;
+}
+
+
+

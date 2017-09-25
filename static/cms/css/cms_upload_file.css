@@ -1,0 +1,7 @@
+#hide_file_btn{
+    position: absolute;
+    opacity:0;
+    width:82px;
+    height:34px;
+    z-index: 10;
+}

@@ -1,0 +1,52 @@
+{% extends 'front_sign_base.html' %}
+
+{% block title %}
+    注册
+{% end %}
+
+{% block head %}
+
+{% end %}
+
+{% block page_title %}
+    注册
+{% end %}
+
+{% block front_form %}
+    <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-addon glyphicon glyphicon-earphone"></span>
+            <input type="text" name="phone" placeholder="手机" class="form-control">
+            <div class="input-group-btn">
+                <button class="btn">获取验证码</button>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-addon glyphicon glyphicon-list"></span>
+            <input type="text" name="sms_captcha" placeholder="短信验证码" class="form-control">
+        </div>
+    </div>
+
+{% end %}
+
+{% block middle_form %}
+    <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-addon glyphicon glyphicon-repeat"></span>
+            <input type="password" name="password_repeat" placeholder="确认密码" class="form-control">
+        </div>
+    </div>
+{% end %}
+
+{% block footer_form %}
+    <div class="form-group">
+        <button class="btn btn-success btn-block">注册</button>
+    </div>
+    <div class="form-group">
+        <p>已经注册的
+            <a href="/front/login/">登录</a>
+        </p>
+    </div>
+{% end %}
